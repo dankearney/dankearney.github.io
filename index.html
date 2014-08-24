@@ -16,8 +16,8 @@
 </style>
 	<style>
 		.face_img {
-			width: 150px;
-			height: 150px;
+			width: 125px;
+			height: 125px;
 			border-radius: 100px;
 		}
 
@@ -28,6 +28,7 @@
 		}
 
 		.face-holder {
+			min-height: 150px;
 		}
 
 	</style>
@@ -57,7 +58,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="../" class="navbar-brand">Bootswatch</a>
+          <a href="../" class="navbar-brand">BumbleFuckers</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -66,25 +67,7 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
-            </li>
-            <li>
-              <a href="../help/">Help</a>
-            </li>
-            <li>
-              <a href="http://news.bootswatch.com">Blog</a>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Download <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="download">
-                <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
-                <li><a href="./bootstrap.css">bootstrap.css</a></li>
-                <li class="divider"></li>
-                <li><a href="./variables.less">variables.less</a></li>
-                <li><a href="./bootswatch.less">bootswatch.less</a></li>
-              </ul>
-            </li>
+          
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
@@ -112,12 +95,12 @@
 
     <div class = "face-holder">
         <div class='face dan' data-index="1">
-        	<img src='https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdwEIY7hjw2dxHWDVZZMP1n-w3t3-i7lnptzJi0nEQxuzx30bi8X1HCud8'
+        	<img src='dan.jpg'
         		class='face_img'>
         </div>
         
         <div class='face jack' data-index="2">
-        	<img src='https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdwEIY7hjw2dxHWDVZZMP1n-w3t3-i7lnptzJi0nEQxuzx30bi8X1HCud8'
+        	<img src='jack.jpg'
         		class='face_img'>
         </div>
 
@@ -127,31 +110,31 @@
         </div>
 
         <div class='face ryan' data-index="4">
-        	<img src='https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdwEIY7hjw2dxHWDVZZMP1n-w3t3-i7lnptzJi0nEQxuzx30bi8X1HCud8'
+        	<img src='ryan.jpg'
         		class='face_img'>
         </div>
 
 
          <div class='face will' data-index=5>
-        	<img src='https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdwEIY7hjw2dxHWDVZZMP1n-w3t3-i7lnptzJi0nEQxuzx30bi8X1HCud8'
+        	<img src='will.jpg'
         		class='face_img'>
         </div>
         
         <div class='face collin' data-index="6">
-        	<img src='https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdwEIY7hjw2dxHWDVZZMP1n-w3t3-i7lnptzJi0nEQxuzx30bi8X1HCud8'
+        	<img src='collin.jpg'
         		class='face_img'>
         </div>
 
         <div class='face tyler' data-index="7">
-        	<img src='https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdwEIY7hjw2dxHWDVZZMP1n-w3t3-i7lnptzJi0nEQxuzx30bi8X1HCud8'
+        	<img src='tyler.jpg'
         		class='face_img'>
         </div>
 
-<!--         <div class='face dave' data-index="8">
-        	<img src='https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdwEIY7hjw2dxHWDVZZMP1n-w3t3-i7lnptzJi0nEQxuzx30bi8X1HCud8'
+        <div class='face dave' data-index="8">
+        	<img src='david.jpg'
         		class='face_img'>
         </div>    
- -->
+
     </div>
 
     <br />
@@ -227,7 +210,7 @@
 			console.log(order[i]);
 			$("[data-index='" + order[i] + "']").animateAppendTo();
 			i += 1;
-		}, 1000);
+		}, 3000);
 	})
 
 </script>
