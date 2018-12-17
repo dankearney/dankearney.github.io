@@ -219,6 +219,7 @@ p {
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
+  border: 1px solid gray;
 }
 
 .active, .dot:hover {
@@ -226,7 +227,6 @@ p {
   height: 30px;
   width: 30px;
   position: relative;
-  border: 1px solid gray;
 }
 
 .mySlides {
