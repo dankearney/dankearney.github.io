@@ -101,6 +101,7 @@ p {
 
 #adinline .adSponsor {
     position: relative;
+    right: -24px;
     bottom: 24px;
 }
 
@@ -211,9 +212,9 @@ p {
 /* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
-  height: 21px;
-  width: 21px;
-  margin: 0 6px;
+  height: 30px;
+  width: 30px;
+  margin: 0 24px;
   background-color: #B9B9B9;
   border-radius: 50%;
   display: inline-block;
@@ -225,8 +226,7 @@ p {
   height: 30px;
   width: 30px;
   position: relative;
-  margin: -3px;
-  right: 6px;
+  border: 1px solid gray;
 }
 
 .mySlides {
