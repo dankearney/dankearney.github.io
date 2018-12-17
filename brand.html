@@ -1,0 +1,182 @@
+
+<!-- saved from url=(0053)file:///C:/users/DKEARNEY/Mobile%20Carousel/mob2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script type="text/javascript" src="./brand_files/google_mobile_app_ads.js.download"></script>
+<link rel="stylesheet" href="./brand_files/mob2.css">
+
+</head><body><div id="adinline" class="external">
+  <img src="file:///C:/users/DKEARNEY/Mobile%20Carousel/[%Impressiontracker%]" style="display: none;">
+  <a id="click_url" href="file:///C:/users/DKEARNEY/Mobile%20Carousel/%%CLICK_URL_UNESC%%%%DEST_URL%%" target="_blank"></a>
+  <div id="clickable" onclick="clickurl();">
+    <div class="container LLR">
+      <div class="thumb">
+        <div class="slideshow-container"><div class="mySlides" style="left: 290px; display: block;"><img class="adImage" src="./brand_files/home-design.jpg"></div><div class="mySlides" style="left: -290px; display: block;"><img class="adImage" src="./brand_files/home-design.jpg"></div><div class="mySlides" style="left: 0px; display: block;"><img class="adImage" src="./brand_files/home-design.jpg"></div><div class="dots_container"><div class="dot" id="0"></div><div class="dot" id="1" style="margin-left: 14px;"></div><div class="dot active" id="2" style="margin-left: 14px;"></div></div></div>
+        <div class="prev" onclick="plusSlides(-1)" style="display: block;">&#10094;</div>
+        <div class="next" onclick="plusSlides(1)" style="display: none;">&#10095;</div>
+      </div>
+      <div class="copycontainer">
+        <div class="adSponsor"><span class="adIcon">Ad</span></div>
+        <div class="text">
+          <p class="title">Ready for the beach?</p>
+          <p class="bodyText">Come see what Florida has to offer.</p>
+          <p class="cta ellipsis">
+            <span class="learnMore">Learn More</span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 32 32" class="externalIcon">
+              <title>external_link</title>
+              <path d="M25.344 25.313v-8h2.656v8.281c0 1.469-1.188 2.406-2.656 2.406h-18.688c-1.469 0-2.656-0.938-2.656-2.406v-18.656c0-1.469 1.188-2.938 2.656-2.938h8v2.656h-8v18.656h18.688zM16.938 17.219l-1.875-1.906 8.656-8.656h-3.719v-2.656h8v8h-2.656v-3.188z"></path>
+            </svg>
+            <span class="sponsorName ellipsis">Sponsored by <strong>Palm Springs</strong></span>
+          </p>
+        </div>
+      </div>
+  </div>
+</div>
+<script type="text/javascript">
+  var imgsrcs = ["[%RailCarouselImage1%]","[%RailCarouselImage2%]","[%RailCarouselImage3%]"];
+  var slides = [];
+  var slide_container = document.getElementsByClassName("slideshow-container")[0];
+  var dots_container = document.createElement("div");
+  dots_container.className = "dots_container";
+  var counter = 0;
+  function addImage() {
+    for (var i=0;i<3;i++){
+      // filter out empty string
+      if (imgsrcs[i].trim()!=""){
+        var current_img = document.createElement("img");
+        var slide = document.createElement("div");
+        slide.style.left = counter * 290 + "px";
+        slide.className = "mySlides";
+        current_img.className = "adImage";
+        current_img.src = imgsrcs[i];
+        slide.appendChild(current_img);
+        slide_container.appendChild(slide);
+        slides.push(slide);
+        var current_dot = document.createElement("div");
+        current_dot.className = "dot";
+        current_dot.id = counter;
+        if (counter>0) {
+          current_dot.style = "margin-left: 14px";
+        }
+        current_dot.addEventListener("click", function(){currentdot(this.id);});
+        dots_container.appendChild(current_dot);
+        counter++;
+      }
+    }
+  }
+  addImage()
+  while (counter<=2 && counter>0) {
+    // dup image if no more than 2 valid image
+    addImage()
+  }
+  slide_container.appendChild(dots_container);
+  var slidesParent = document.getElementsByClassName("slideshow-container")[0];
+  var num = slides.length;
+
+  var clickurl = function() {
+    document.getElementById("click_url").click();
+  };
+
+  // Next/previous controls
+  function plusSlides(n) {
+    control_flag = false;
+    var e = window.event;
+    if (e && e.stopPropagation) e.stopPropagation();
+    pSlides(n);
+    _sendTracking('FluidAdInteraction',n==1?'next':'prev');
+  }
+
+  function currentdot(n) {
+    console.log(n);
+    control_flag = false;
+    var e = window.event;
+    if (e && e.stopPropagation) e.stopPropagation();
+    var x = getLeftNum(slides[n])/290;
+    pSlides(x);
+  }
+
+  function getLeftNum(s) {
+    var st = s.style.left;
+    st = st.substring(0,st.indexOf("px"));
+    return Number(st);
+  }
+
+  function showblock() {
+    setTimeout(function(){
+      for (var i=0;i<num;i++) {
+        slides[i].style.display = "block";
+      }
+    },600);
+  }
+
+  var prevArrow = document.getElementsByClassName("prev")[0];
+  var nextArrow = document.getElementsByClassName("next")[0];
+
+  function pSlides(n) {
+    var x,y;
+    for (var i=0;i<num;i++) {
+      var st = getLeftNum(slides[i]);
+      st = -n*290 + st;
+      if (st<=-(290*(num-1))) {
+        slides[i].style.display = "none";
+        slides[i].style.left = (num*290 + st) + "px";
+        x=i;
+        showblock();
+      } else if (st>=(290*(num-1))) {
+        slides[i].style.display = "none";
+        slides[i].style.left = (-num*290 + st) + "px";
+        y=i;
+        showblock();
+      } else {
+        slides[i].style.left = st + "px";
+      }
+      if (st==0) {
+        dots_container.childNodes[i].className = "dot active";
+        if (i==0) {
+          prevArrow.style.display = "none";
+          nextArrow.style.display = "block";
+        } else if (i==num-1) {
+          prevArrow.style.display = "block";
+          nextArrow.style.display = "none";
+        } else {
+          prevArrow.style.display = "block";
+          nextArrow.style.display = "block";
+        }
+      } else {
+        dots_container.childNodes[i].className = "dot";
+      }
+    }
+  }
+
+  var control_flag = true;
+  function slideCycle() {
+    if (control_flag) {
+      pSlides(1);
+      setTimeout(slideCycle, 8000);
+    }
+  }
+
+  slideCycle();
+
+  // Send tracking to host page
+  var _templateType = 'FluidRail';
+  var _messageDomain = 'https://' + document.referrer.match(/^(https:\/\/)([^/]+)/)[2];
+  var _sendTracking = function(action, context) {
+    // build tracking context
+    var contextVals = [_templateType];
+    if(context) {
+      contextVals.push(context);
+    }
+    // data for tracking request
+    var trackingRequest = {
+      action: action,
+      context: contextVals.join('|'),
+    };
+    // flag as error if needed
+    if ("error" === action) {
+      trackingRequest.messageType = 'NativeAdsError';
+    } else {
+      trackingRequest.messageType = 'NativeAdsTracking';
+    }
+    top.postMessage(trackingRequest, _messageDomain);
+  };
+
+</script></div></body></html>
