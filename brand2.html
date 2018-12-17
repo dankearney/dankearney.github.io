@@ -54,7 +54,7 @@
         current_dot.className = "dot";
         current_dot.id = counter;
         if (counter>0) {
-          current_dot.style = "margin-left: 42px";
+          current_dot.style = "margin-left: 64px";
         }
         current_dot.addEventListener("click", function(){currentdot(this.id);});
         dots_container.appendChild(current_dot);
@@ -130,16 +130,6 @@
       }
       if (st==0) {
         dots_container.childNodes[i].className = "dot active";
-        if (i==0) {
-          prevArrow.style.display = "none";
-          nextArrow.style.display = "block";
-        } else if (i==num-1) {
-          prevArrow.style.display = "block";
-          nextArrow.style.display = "none";
-        } else {
-          prevArrow.style.display = "block";
-          nextArrow.style.display = "block";
-        }
       } else {
         dots_container.childNodes[i].className = "dot";
       }
