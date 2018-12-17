@@ -1,0 +1,275 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  margin-bottom: 15px;
+}
+
+#adinline.external {
+    background-color: #F4F4F4;
+    border: 3px solid lightgray;
+}
+    
+#adinline div.learnMore {
+  display: none;
+}
+
+#adinline .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#clickable {
+  display: block;
+  position: relative;
+  font-family: Arial, Verdana, 'Bitstream Vera Sans', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 30px 0 30px 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#adinline .thumb {
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  text-align: center;
+  margin-top: -3px;
+  position: relative;
+}
+
+#adinline .thumb img {
+  width: 840px;
+  height: 210px;
+  border-radius: 6px;
+}
+
+#adinline .logo {
+  border: 
+  width: 100%;
+  height: 330px;
+  overflow: hidden;
+  text-align: center;
+}
+
+#adinline .logo img {
+  width: 330px;
+  height: 100%;
+}
+
+#adinline .containerInner {
+  width: 100%;
+  position: absolute;
+  display: block;
+  text-align: left;
+  left: 30px;
+  padding-right: 30px;
+}
+
+#adinline .title {
+  font-size: 45px;
+  font-weight: bold;
+  color: #000a12;
+  margin-top: 54px;
+}
+
+#adinline .bodyText {
+    font-size: 33px;
+    color: #000;
+    margin-bottom: 6px;
+    margin-top: 12px;
+}
+
+#adinline .cta {
+  font-weight: bolder;
+  font-size: 33px;
+  color: #00A778;
+}
+
+#adinline.external .moreText {
+  font-size: 42px;
+  color: #000;
+}
+
+#adinline .adSponsor {
+    position: relative;
+    right: -24px;
+    bottom: 24px;
+}
+
+#adinline .adSponsor .adIcon {
+    color: #fff;
+    background-color: #656565;
+    float: right;
+    font: normal 30px Arial,sans-serif;
+    padding: 9px 18px;
+    border-radius: 9px;
+    margin-top: 69px;
+    margin-right: 66px;
+}
+
+/* loading ad visual states */
+
+#clickable.loading .rating .reviewCountLLR {
+  display: none;
+}
+
+#adinline .thumb .glyphicon {
+  display: none;
+}
+
+#clickable.loading .thumb .glyphicon {
+  display: block;
+}
+
+#clickable.loading .thumb {
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20version%3D%271.1%27%20baseProfile%3D%27basic%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20x%3D%810px%27%20y%3D%810px%27%20width%3D%27123px%27%20height%3D%27192px%27%20viewBox%3D%270%200%20123%20192%27%20overflow%3D%27visible%27%20enable-background%3D%27new%200%200%20123%20192%27%20xml%3Aspace%3D%27preserve%27%3E%3Cpath%20fill%3D%27%23D8D8D8%27%20d%3D%27M104.3%2C0C94.1%2C0%2C85.9%2C8.2%2C85.9%2C18.4v99.2h11.0v61.4c0%2C7.1%2C5.7%2C12.9%2C12.9%2C12.9%20c7.1%2C0%2C12.9-5.8%2C12.9-12.9V18.4C122.8%2C8.2%2C114.5%2C0%2C104.3%2C0z%20M58.1%2C5.5c0-2.2-1.8-4.1-4.1-4.1%20c-2.2%2C0-4.1%2C1.8-4.1%2C4.1v43.3c0%2C2.2-1.8%2C4.1-4.1%2C4.1c-2.2%2C0-4.1-1.8-4.1-4.1V5.5%20c0-2.2-1.8-4.1-4.1-4.1c-2.3%2C0-4.1%2C1.8-4.1%2C4.1v43.3c0%2C2.2-1.8%2C4.1-4.1%2C4.1%20c-2.2%2C0-4.1-1.8-4.1-4.1V5.5C24.9%2C3.2%2C23.0%2C1.4%2C20.7%2C1.4c-2.2%2C0-4.1%2C1.8-4.1%2C4.0v43.4%20c0%2C2.2-1.8%2C4.1-4.1%2C4.1c-2.3%2C0-4.1-1.8-4.1-4.1V5.5c0-2.2-1.8-4.1-4.1-4.1%20c-2.2%2C0-4.1%2C1.8-4.1%2C4.1v19.9H0v43.0c0%2C9.6%2C6.9%2C17.7%2C16.1%2C19.3v91.1c0%2C7.1%2C5.8%2C12.9%2C12.9%2C12.9%20c7.1%2C0%2C12.9-5.8%2C12.9-12.9V87.9c9.1-1.6%2C16.1-9.7%2C16.1-19.3V25.4h0.0V5.5z%27%2F%3E%3C%2Fsvg%3E%20");
+  background-size: 75px auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#adinline .externalIcon {
+  fill: #00A778;
+  position: relative;
+  top: 9px;
+}
+
+#adinline .sponsorName {
+  font-size: 30px;
+  color: #939393;
+}
+
+#adinline .copycontainer {
+  width: 100%;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.two-line-text {
+  position: relative;
+  line-height: 39px;
+  max-height: 78px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* place for '...' */
+  margin-right: -1em;
+  padding-right: 1em;
+}
+
+.two-line-text:before {
+  /* points in the end */
+  content: '...';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of block */
+  right: 9px;
+  bottom: 0;
+}
+
+/* hide ... if we have text, which is less than or equal to max lines */
+.two-line-text:after {
+  /* points in the end */
+  content: '';
+  /* absolute position */
+  position: absolute;
+  /* set position to right bottom corner of text */
+  right: 0;
+  /* set width and height */
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background-color: white;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  height: 100%;
+  width: 840px;
+  margin: auto;
+  position: relative;
+}
+
+.dots_container {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 30px;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 21px;
+  width: 21px;
+  margin: 0 6px;
+  background-color: #B9B9B9;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  margin: -3px;
+  right: 6px;
+}
+
+.mySlides {
+  position: absolute;
+  width: 840px;
+  height: 100%;
+  transition: left .6s ease-in-out;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  background-color: rgba(0, 0, 0, .4);
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -66px;
+  padding: 27px 39px 27px 39px;
+  color: white;
+  font-weight: bold;
+  font-size: 54px;
+  transition: 0.6s ease;
+  border-radius: 0 9px 9px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0px;
+  border-radius: 9px 0 0 9px;
+  padding-left: 45px;
+}
+
+.prev {
+  padding-right: 45px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.text {
+    padding: 0 42px 0 42px;
+    margin-top: -6px;
+} 
