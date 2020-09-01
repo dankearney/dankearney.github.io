@@ -322,13 +322,18 @@ async function getFile(e) {
 		function addInputs() {
 			// Add inputs that aren't already there
 			var inputs = document.getElementsByClassName("itemName");
-			for (var i=0; i<getNumItems(); i++) {
+			for (var i=inputs.length; i<getNumItems(); i++) {
 				addInput(itemNames[i] ? itemNames[i] : '');
 			}
+
+			var inputs = document.getElementsByClassName("itemName");
+			var max = inputs.length;
 			// Remove inputs over the limit
 			if (inputs.length > getNumItems()) {
-				for (var i = getNumItems()-1; i < inputs.length; i++) {
-					inputs[i].parentNode.remove();
+				for (var i = getNumItems()-1; i < max; i++) {
+					if (inputs[i]) {
+						inputs[i].parentNode.remove();
+					}
 				}
 			}
 		}
