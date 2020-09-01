@@ -1,0 +1,447 @@
+<html>
+	<head>
+	<title>
+		Grid Posters
+	</title>
+	<style >
+		.main {
+			max-width: 60rem;
+	  		padding: 1rem;
+	  		margin: auto;
+	  		font-family: Georgia;
+		}
+
+		#poster {
+			display: none;
+		}
+
+		#posterContainer {
+			display: inline-block;
+			min-width: 400px;
+
+		}
+
+		#controlPanel {
+			display: inline-block;
+			vertical-align: top;
+			margin-left: 10px;
+			min-width: 400px;
+		}
+
+		#update {
+			font-size: 16px;
+		}
+
+		#inputContainer {
+			height: 550px;
+    		overflow-y: scroll;
+    		padding: 5px;
+		}
+
+		input {
+			margin: 2px;
+		}
+
+	</style>
+	<script type="text/javascript">
+
+		// Global variables
+		var dpi = 96;
+		var canvasHeightInches = 36;
+		var canvasHeightPixels = canvasHeightInches * dpi;
+		var canvasWidthInches = 24;
+		var canvasWidthPixels = canvasWidthInches * dpi;
+
+		var miniPosterHeight = 36*20;
+		var miniPosterWidth = 24*20;
+
+
+		var xPadding = 50;
+		var yPadding = 100;
+		var titlePadding = 350;
+		var horizPadding = 100;
+		var numItems = 48;
+
+		var backgroundImages =  ["mountains1_1.jpg", "Background.png"]
+		var itemNames = ["Mount Washington"];
+		var title = 'Title';
+
+		document.addEventListener("DOMContentLoaded", function(){
+
+
+			// Initialize data
+			initializeData()
+
+			// Draw background images
+			initializeBackgroundImages();
+
+			drawPoster();
+
+		});
+
+		function drawPoster() {
+
+			// Add inputs
+			addInputs();
+
+			// Initialize canvas
+			var canvas = initializeCanvas();
+			var ctx = getCanvasContext(canvas);
+
+			// Draw background
+			drawBackground(canvas).then((value) => {
+
+				// Draw title
+				drawTitle(canvas);
+
+				// Draw inner shapes
+				var rectanglePromises = drawRectangles(canvas);
+
+				// Render when the images are ready
+				Promise.all(rectanglePromises).then((values) => {
+					render(canvas);
+				});
+
+			});
+
+		}
+
+		function initializeData() {
+			// Match New Hampshire
+			if (window.location.href.match("NewHampshire")) {
+				numItems = 48;
+				itemNames = ["Washington","Adams","Jefferson","Monroe","Madison","Lafayette","Lincoln","South Twin","Carter Dome","Moosilauke","Eisenhower","North Twin","Carrigain","Bond","Middle Carter","West Bond","Garfield","Liberty","South Carter","Wildcat, A peak","Hancock","South Kinsman","Field","Osceola","Flume","South Hancock","Pierce","North Kinsman","Willey","Bondcliff","Zealand","North Tripyramid","Cabot","East Osceola","Middle Tripyramid","Cannon","Hale","Jackson","Tom","Wildcat, D Peak","Moriah","Passaconaway","Owl's Head","Galehead","Whiteface","Waumbek","Isolation","Tecumseh"];
+				title = "The New Hampshire 4000 Footers";
+			}
+			setTitle(title);
+			setNumItems(numItems);
+		}
+
+		function render(canvas) {
+			var img = canvas.toDataURL("image/png");
+    		document.getElementById("posterMini").src = img;
+  		 	document.getElementById("posterMini").width = miniPosterWidth;
+   			document.getElementById("posterMini").height = miniPosterHeight;
+   			document.getElementById	("download").href = img;
+		}
+
+		function initializeCanvas() {
+			// Initialize real canvas
+			var canvas = getCanvas();
+			canvas.width = canvasWidthPixels;
+			canvas.height = canvasHeightPixels;
+			var ctx = canvas.getContext('2d');
+			return canvas;
+		}
+
+		function initializeBackgroundImages() {
+			var form = document.getElementById("bgForm");
+			for (var i=0; i<backgroundImages.length; i++) {
+
+				var newInput = document.createElement("input");
+				newInput.type = 'radio';
+				newInput.name = 'background';
+				newInput.label = i;
+				newInput.checked = "checked";
+
+				form.appendChild(newInput);
+
+				var newImage = document.createElement("img");
+				newImage.className = "background";
+				newImage.src = backgroundImages[i];
+				newImage.style = "height: 100px; width: 66px;";
+
+				form.appendChild(newImage);
+
+			}
+		}
+
+		function getCanvasContext(canvas) {
+			return canvas.getContext('2d');
+		}
+
+		function drawBackground(canvas) {
+			ctx = getCanvasContext(canvas);
+			if (document.getElementById("bgColorRadioButton").checked) {
+				ctx.fillStyle = getBackgroundColor();
+				ctx.fillRect(0,0,canvas.width, canvas.height);
+				var p = new Promise((resolve, reject) => {
+				  resolve('Success!');
+				});
+				return p;
+			} else {
+				var bgs = document.querySelectorAll("input[name=background]");
+				for (var i=0; i<bgs.length; i++) {
+					if (bgs[i].checked) {
+						return drawImage(canvas, backgroundImages[bgs[i].label], 0, 0, canvasWidthPixels, canvasHeightPixels);
+					}
+				}
+			}
+		}
+
+		function drawMini(canvas) {
+			const ctx1 = getCanvasContext(canvas);
+			const canvas2 = document.getElementById("posterMini");
+			canvas2.width = miniPosterWidth;
+			canvas2.height = miniPosterHeight;
+			const ctx2 = canvas2.getContext("2d");
+			ctx1.imageSmoothingQuality  = 'high';
+			ctx2.imageSmoothingQuality  = 'high';
+			ctx2.drawImage(canvas,0, 0, canvas.width, canvas.height, 0, 0, canvas2.width, canvas2.height);	
+		}
+
+		function drawRectangle(canvas, x, y, width, height) {
+			var ctx = getCanvasContext(canvas);
+			ctx.shadowColor = '#d53';
+			ctx.lineWidth = 15;
+			ctx.strokeStyle = '#ccc';
+			ctx.strokeRect(x, y, width, height);
+		}
+
+		function drawTitle(canvas) {
+			drawText(canvas, canvasWidthPixels/2, titlePadding/2, document.getElementById("title").value);
+		}
+
+		function setTitle() {
+			document.getElementById("title").value = title;
+		}
+
+		function setNumItems() {
+			document.getElementById("numItems").value = numItems;
+		}
+
+		function drawText(canvas, x, y, text) {
+			var ctx = getCanvasContext(canvas);
+			ctx.textAlign = "center";
+			ctx.textBaseline = 'middle';
+			ctx.strokeStyle = "#000000";
+			ctx.fillStyle = "#000000";
+			ctx.font = "100px Georgia";
+			ctx.fillText(text, x, y);
+		}
+
+		function drawLabelText(canvas, x, y, text) {
+			var ctx = getCanvasContext(canvas);
+			ctx.textAlign = "center";
+			ctx.textBaseline = 'middle';
+			ctx.strokeStyle = "#000000";
+			ctx.fillStyle = "#000000";
+			ctx.font = "36px Georgia";
+			ctx.fillText(text, x, y);
+		}
+
+		function getCanvas() {
+			return document.getElementById("poster");
+		}
+
+		function getBackgroundColor() {
+			return document.getElementById("bgColor").value;
+		}
+
+		function getNumItems() {
+			return document.getElementById("numItems").value;
+		}
+
+		function getNames() {
+			var names = [];
+			inputs = document.getElementsByClassName("itemName");
+			for (var i=0; i<inputs.length; i++) {
+				names.push(inputs[i].value);
+			}
+			return names;
+		}
+
+		function getb64Images() {
+			var images = [];
+			imgFiles = document.getElementsByClassName("imgFile");
+			for (var i=0; i<imgFiles.length; i++) {
+				var b64 = imgFiles[i].getAttribute('b64ImageURL');
+				images.push(b64);
+			}
+			return images;	
+		}
+
+		function drawImage(canvas, b64Image, x, y, width, height) {
+			var ctx = getCanvasContext(canvas);
+			let promise = new Promise(function(resolve, reject) {
+				var image = new Image();
+					image.onload = function() {
+					    ctx.drawImage(image, x, y, width, height);
+					    resolve();
+					};
+				image.src = b64Image;
+			});
+			return promise;
+		}
+
+
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
+async function getFile(e) {
+   var file = e.srcElement.files[0]
+   e.srcElement.setAttribute('b64ImageURL', await toBase64(file));
+}
+
+	    function findIdealSquareSize(xPadding, yPadding, titlePadding, horizPadding, numItems) {
+
+	    	var nRows;
+
+	        for (var width=1; width <= canvasWidthPixels; width++) {
+
+	            current_x_pos = horizPadding
+	            current_y_pos = yPadding + titlePadding
+	            nRows = 1
+	            
+	            for (var i=0; i<numItems; i++) {
+	                
+	                // Attempt to the square
+	                current_x_pos += xPadding
+	                current_x_pos += width
+
+	                // If the current row is full, skip to the next row.
+	                if ((current_x_pos + horizPadding) > canvasWidthPixels) {
+	                    current_y_pos += (yPadding + width)
+	                    current_x_pos = xPadding + width + xPadding
+	                    nRows += 1;
+	                }
+	        	}
+
+	            // Did we still fit? If so then this might be the best size
+	            if (current_y_pos <= (canvasHeightPixels - yPadding - width)) {
+	                best = {"width": width, "nRows" : nRows, "nCols": Math.ceil(numItems / nRows) };
+	            }
+	        }
+	        return best;
+		}
+
+		function addInputs() {
+			// Add inputs that aren't already there
+			var inputs = document.getElementsByClassName("itemName");
+			for (var i=0; i<getNumItems(); i++) {
+				addInput(itemNames[i] ? itemNames[i] : '');
+			}
+			// Remove inputs over the limit
+			if (inputs.length > getNumItems()) {
+				for (var i = getNumItems()-1; i < inputs.length; i++) {
+					inputs[i].parentNode.remove();
+				}
+			}
+		}
+
+		function addInput(name) {
+
+			var container = document.getElementById("inputContainer");
+
+			var row = document.createElement("div");
+			container.append(row);
+
+			var input = document.createElement("input");
+			input.type='text';
+			input.className = 'itemName';
+			input.value = name;
+			row.appendChild(input);
+
+			var input2 = document.createElement("input");
+			input2.type='file';
+			input2.className = 'imgFile';
+			input2.onchange = getFile;
+			row.appendChild(input2);
+
+			row.append(document.createElement("br"));
+			row.append(document.createElement("br"));
+		}
+
+		function drawRectangles(canvas) {
+
+			promises = []
+
+			numItems = parseInt(getNumItems());
+			names = getNames();
+			b64Images = getb64Images();
+
+			squareSize = findIdealSquareSize(xPadding, yPadding, titlePadding, horizPadding, numItems);
+
+	        canvas_width = canvasWidthPixels;
+	        canvas_height = canvasHeightPixels;
+
+	        width = squareSize.width;
+	        nRows = squareSize.nRows;
+	        nCols = squareSize.nCols;
+
+
+
+            // Get x padding needed to center
+            centeringPadding = ((canvas_width - (xPadding + width) * nCols) + xPadding) / 2
+
+            // Get x padding needed to center last line
+            numOnLastRow = parseInt((nRows * nCols) - numItems)
+
+            if (numOnLastRow == 0) {
+                lastRowCenteringPadding = centeringPadding
+            }
+            else{
+                lastRowCenteringPadding = centeringPadding + (numOnLastRow * (width + xPadding)) / 2
+            }
+
+            count = -1
+            for (var rowIndex=0; rowIndex<nRows; rowIndex++) {
+                for (var colIndex=0; colIndex<nCols; colIndex++) {	                    
+                    // Only draw the number of items
+                    count += 1
+                    if (count >= numItems) {
+                        break;
+                    }
+
+                    // Draw square
+                    xStartIndex = (xPadding + width) * colIndex + ((rowIndex < nRows-1) ? centeringPadding : lastRowCenteringPadding)
+                    yStartIndex = (yPadding + width) * rowIndex + titlePadding
+
+                    drawLabelText(canvas, xStartIndex + width/2, yStartIndex + width + yPadding/2, names[count]);
+                    if (b64Images[count]) {
+                    	promises.push(drawImage(canvas, b64Images[count], xStartIndex, yStartIndex, width, width));
+                    } else {
+                    	drawRectangle(canvas, xStartIndex, yStartIndex, width, width);
+                    }
+                }
+            }
+            return promises;
+		}
+
+	</script>
+	</head>
+	<body>
+		<div class="main">
+			<h1>Grid Posters</h1>
+			<div id="posterContainer">
+				<canvas id="poster"></canvas>
+				<img id="posterMini"></img>
+			</div>
+			<div id="controlPanel">
+				<button onClick="drawPoster()">Update!</button><br/><br />
+				<strong>Title</strong>
+				<input type='text' id='title' value='Title'></input>
+				<br />
+
+				<strong>Background</strong><br />
+				<form id="bgForm">
+					<input type='radio' name='background' label='color' id='bgColorRadioButton'>Color<input type='color' id='bgColor' value='#f2f2f2'></input>
+				</form>
+				
+
+				<br/>
+				<strong>Number of Items</strong>
+				<input type='number' min=1 max=1000 id='numItems' value='5'></input>
+				<br />
+				<div id="inputContainer"></div>
+				<br /><br />
+			</div>
+			<br />
+			<a id="download" download="image.png">Download high resolution</a>
+		</div>
+	</body>
+</html>
