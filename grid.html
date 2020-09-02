@@ -33,7 +33,7 @@
 		}
 
 		#inputContainer {
-			height: 460px;
+			height: 550px;
     		overflow-y: scroll;
     		padding: 5px;
 		}
@@ -62,7 +62,7 @@
 		var horizPadding = 100;
 		var numItems = 48;
 
-		var backgroundImages =  ["mountains1_l.jpg", "Background.png"]
+		var backgroundImages =  ["mountains1_l.jpg", "Background.png", "mountains2.jpg"]
 		var itemNames = ["Mount Washington"];
 		var title = 'Title';
 
@@ -75,6 +75,9 @@
 			// Draw background images
 			initializeBackgroundImages();
 
+			// Add inputs with initial data
+			addInputs(itemNames)
+
 			drawPoster();
 
 		});
@@ -82,7 +85,7 @@
 		function drawPoster() {
 
 			// Add inputs
-			addInputs();
+			addInputs(getNames());
 
 			// Initialize canvas
 			var canvas = initializeCanvas();
@@ -239,7 +242,7 @@
 		}
 
 		function getNumItems() {
-			return document.getElementById("numItems").value;
+			return parseInt(document.getElementById("numItems").value);
 		}
 
 		function getNames() {
@@ -319,22 +322,14 @@ async function getFile(e) {
 	        return best;
 		}
 
-		function addInputs() {
-			// Add inputs that aren't already there
-			var inputs = document.getElementsByClassName("itemName");
-			for (var i=inputs.length; i<getNumItems(); i++) {
-				addInput(itemNames[i] ? itemNames[i] : '');
-			}
+		function addInputs(names) {
 
-			var inputs = document.getElementsByClassName("itemName");
-			var max = inputs.length;
-			// Remove inputs over the limit
-			if (inputs.length > getNumItems()) {
-				for (var i = getNumItems()-1; i < max; i++) {
-					if (inputs[i]) {
-						inputs[i].parentNode.remove();
-					}
-				}
+			// Clear inputs
+			document.getElementById("inputContainer").innerHTML = '';
+			
+			// Re-add with names
+			for (var i=0; i<getNumItems(); i++) {
+				addInput(names[i] ? names[i] : '');
 			}
 		}
 
@@ -365,7 +360,7 @@ async function getFile(e) {
 
 			promises = []
 
-			numItems = parseInt(getNumItems());
+			numItems = getNumItems();
 			names = getNames();
 			b64Images = getb64Images();
 
