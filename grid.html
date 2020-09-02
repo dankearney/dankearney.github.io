@@ -33,7 +33,7 @@
 		}
 
 		#inputContainer {
-			height: 550px;
+			height: 460px;
     		overflow-y: scroll;
     		padding: 5px;
 		}
@@ -324,12 +324,18 @@ async function getFile(e) {
 
 		function addInputs(names) {
 
-			// Clear inputs
-			document.getElementById("inputContainer").innerHTML = '';
-			
+			var inputs = document.getElementsByClassName("itemName");
 			// Re-add with names
 			for (var i=0; i<getNumItems(); i++) {
-				addInput(names[i] ? names[i] : '');
+				if (!inputs[i]) {
+					addInput(names[i] ? names[i] : '');
+				}
+			}
+
+			// Remove 
+			var max = inputs.length;
+			for (var i=getNumItems(); i<max; i++) {
+				inputs[getNumItems()].parentNode.remove();
 			}
 		}
 
