@@ -55,7 +55,6 @@
 		var miniPosterHeight = 36*20;
 		var miniPosterWidth = 24*20;
 
-
 		var xPadding = 50;
 		var yPadding = 100;
 		var titlePadding = 350;
@@ -122,10 +121,10 @@
 				numItems = 48;
 				itemNames = ["Washington","Adams","Jefferson","Monroe","Madison","Lafayette","Lincoln","South Twin","Carter Dome","Moosilauke","Eisenhower","North Twin","Carrigain","Bond","Middle Carter","West Bond","Garfield","Liberty","South Carter","Wildcat, A peak","Hancock","South Kinsman","Field","Osceola","Flume","South Hancock","Pierce","North Kinsman","Willey","Bondcliff","Zealand","North Tripyramid","Cabot","East Osceola","Middle Tripyramid","Cannon","Hale","Jackson","Tom","Wildcat, D Peak","Moriah","Passaconaway","Owl's Head","Galehead","Whiteface","Waumbek","Isolation","Tecumseh"];
 				title = "The New Hampshire 4000 Footers";
-			} else if (window.location.href.match("Adirondaks")) {
+			} else if (window.location.href.match("Adirondacks")) {
 				numItems = 46;
 				itemNames = ["Marcy","Algonquin","Haystack","Skylight","Whiteface","Dix","Gray","Iroquois Peak","Basin","Gothics","Colden","Giant","Nippletop","Santanoni","Redfield","Wright Peak","Saddleback","Panther","TableTop","Rocky Peak","Macomb","Armstrong","Hough","Seward","Marshall","Allen","Big Slide","Esther","Upper Wolf Jaw","Lower Wolf Jaw","Street","Phelps","Donaldson","Seymour","Sawteeth","Cascade","South Dix","Porter","Colvin","Emmons","Dial","Grace Peak","Blake Peak","Cliff","Nye","Couchsachraga"];
-				title = "The Adirondak 46ers";
+				title = "The Adirondack 46ers";
 			}
 			setTitle(title);
 			setNumItems(numItems);
@@ -372,7 +371,6 @@
 			row.appendChild(input2);
 
 			row.append(document.createElement("br"));
-			row.append(document.createElement("br"));
 		}
 
 		function drawRectangles(canvas) {
@@ -436,6 +434,11 @@
 	<body>
 		<div class="main">
 			<h1>Grid Posters</h1>
+			<div>
+				<a href="?Adirondacks">Adirondacks</a>
+				<a href="?NewHampshire">New Hampshire</a>
+			</div>
+			<Br />
 			<div id="posterContainer">
 				<canvas id="poster"></canvas>
 				<img id="posterMini"></img>
@@ -451,7 +454,6 @@
 					<input type='radio' name='background' label='color' id='bgColorRadioButton'>Color<input type='color' id='bgColor' value='#f2f2f2'></input><Br />
 					<input type='radio' name='background' label='custom' id='bgCustom'>Custom<input type='file' id='bgFile'></input><br/>
 				</form>
-				<br/>
 				<strong>Number of Items</strong>
 				<input type='number' min=1 max=1000 id='numItems' value='5'></input>
 				<br />
