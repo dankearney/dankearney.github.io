@@ -58,7 +58,7 @@
 		var xPadding = 50;
 		var yPadding = 100;
 		var titlePadding = 350;
-		var horizPadding = 100;
+		var borderPadding = 100;
 		var numItems = 48;
 		var labelFontSize = 36;
 
@@ -134,9 +134,10 @@
 				numItems = 50;
 				itemNames = ["Alaska\\nDenali\\n20,310'","California\\nMount Whitney\\n14,498'","Colorado\\nMount Elbert\\n14,433'","Washington\\nMount Rainier\\n14,411'","Wyoming\\nGannett Peak\\n13,804'","Hawaii\\nMauna Kea\\n13,796'","Utah\\nKings Peak\\n13,528'","New Mexico\\nWheeler Peak\\n13,161'","Nevada\\nBoundary Peak\\n13,140'","Montana\\nGranite Peak\\n12,799'","Idaho\\nBorah Peak\\n12,662'","Arizona\\nHumphreys Peak\\n12,633'","Oregon\\nMount Hood\\n11,239'","Texas\\nGuadalupe Peak\\n8749'","South Dakota\\nBlack Elk Peak\\n7231'","North Carolina\\nMount Mitchell\\n6684'","Tennessee\\nClingmans Dome\\n6643'","New Hampshire\\nMount Washington\\n6288'","Virginia\\nMount Rogers\\n5729'","Nebraska\\nPanorama Point\\n5426'","New York\\nMount Marcy\\n5344'","Maine\\nKatahdin\\n5268'","Oklahoma\\nBlack Mesa\\n4973'","West Virginia\\nSpruce Knob\\n4861'","Georgia\\nBrasstown Bald\\n4784'","Vermont\\nMount Mansfield\\n4393'","Kentucky\\nBlack Mountain\\n4139'","Kansas\\nMount Sunflower\\n4039'","South Carolina\\nSassafras Mountain\\n3554'","North Dakota\\nWhite Butte\\n3506'","Massachusetts\\nMount Greylock\\n3487'","Maryland\\nBackbone Mountain\\n3360'","Pennsylvania\\nMount Davis\\n3213'","Arkansas\\nMagazine Mountain\\n2753'","Alabama\\nCheaha Mountain\\n2405'","Connecticut\\nMount Frissell\\n2380'","Minnesota\\nEagle Mountain\\n2301'","Michigan\\nMount Arvon\\n1979'","Wisconsin\\nTimms Hill\\n1951'","New Jersey\\nHigh Point\\n1803'","Missouri\\nTaum Sauk Mountain\\n1772'","Iowa\\nHawkeye Point\\n1670'","Ohio\\nCampbell Hill\\n1549'","Indiana\\nHoosier Hill\\n1257'","Illinois\\nCharles Mound\\n1235'","Rhode Island\\nJerimoth Hill\\n812'","Mississippi\\nWoodall Mountain\\n806'","Louisiana\\nDriskill Mountain\\n535'","Delaware\\nEbright Azimuth\\n450'","Florida\\nBritton Hill\\n345'"];
 				title = 'The 50 State High Points';
-				yPadding = 180;
-				horizPadding = 50;
-				xPadding = 120;
+				yPadding = 130;
+				borderPadding = 50;
+				xPadding = 100;
+				labelFontSize = 32;
 			} else if (window.location.href.match("Colorado")) {
 				numItems = 56;
 				itemNames = ["Mt. Elbert","Mt. Massive","Mt. Harvard","Blanca Peak","La Plata Peak","Uncompahgre Peak","Crestone Peak","Mt. Lincoln","Grays Peak","Mt. Antero","Torreys Peak","Castle Peak","Quandary Peak","Mt. Evans","Longs Peak","Mt. Wilson","Mt. Cameron","Mt. Shavano","Mt. Princeton","Mt. Belford","Crestone Needle","Mt. Yale","Mt. Bross","Kit Carson Peak","El Diente Peak","Maroon Peak","Tabeguache Peak","Mt. Oxford","Mt. Sneffels","Mt. Democrat","Capitol Peak","Pikes Peak","Snowmass Mountain","Windom Peak","Mt. Eolus","Challenger Point","Mt. Columbia","Missouri Mountain","Humboldt Peak","Mt. Bierstadt","Conundrum Peak","Sunlight Peak","Handies Peak","Culebra Peak","Mt. Lindsey","Ellingwood Point","North Eolus","Little Bear Peak","Mt. Sherman","Redcloud Peak","Pyramid Peak","Wilson Peak","Wetterhorn Peak","San Luis Peak","North Maroon","Mt. of the Holy Cross","Huron Peak","Sunshine Peak","San Juan Mountain"];
@@ -331,13 +332,13 @@
 		   e.srcElement.setAttribute('b64ImageURL', await toBase64(file));
 		}
 
-	    function findIdealSquareSize(xPadding, yPadding, titlePadding, horizPadding, numItems) {
+	    function findIdealSquareSize(xPadding, yPadding, titlePadding, borderPadding, numItems) {
 
 	    	var nRows;
 
 	        for (var width=1; width <= canvasWidthPixels; width++) {
 
-	            current_x_pos = horizPadding
+	            current_x_pos = borderPadding
 	            current_y_pos = yPadding + titlePadding
 	            nRows = 1
 	            
@@ -348,7 +349,7 @@
 	                current_x_pos += width
 
 	                // If the current row is full, skip to the next row.
-	                if ((current_x_pos + horizPadding) > canvasWidthPixels) {
+	                if ((current_x_pos + borderPadding) > canvasWidthPixels) {
 	                    current_y_pos += (yPadding + width)
 	                    current_x_pos = xPadding + width + xPadding
 	                    nRows += 1;
@@ -356,7 +357,7 @@
 	        	}
 
 	            // Did we still fit? If so then this might be the best size
-	            if (current_y_pos <= (canvasHeightPixels - width)) {
+	            if (current_y_pos <= (canvasHeightPixels - width - borderPadding) ) {
 	                best = {"width": width, "nRows" : nRows, "nCols": Math.ceil(numItems / nRows) };
 	            }
 	        }
@@ -410,7 +411,7 @@
 			names = getNames();
 			b64Images = getb64Images();
 
-			squareSize = findIdealSquareSize(xPadding, yPadding, titlePadding, horizPadding, numItems);
+			squareSize = findIdealSquareSize(xPadding, yPadding, titlePadding, borderPadding, numItems);
 
 	        canvas_width = canvasWidthPixels;
 	        canvas_height = canvasHeightPixels;
