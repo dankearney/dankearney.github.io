@@ -60,6 +60,7 @@
 		var titlePadding = 350;
 		var horizPadding = 100;
 		var numItems = 48;
+		var labelFontSize = 36;
 
 		var backgroundImages =  ["mountains1_l.jpg", "mountains2.jpg", "Background.png"]
 		var itemNames = ["Mount Washington"];
@@ -125,6 +126,27 @@
 				numItems = 46;
 				itemNames = ["Marcy","Algonquin","Haystack","Skylight","Whiteface","Dix","Gray","Iroquois Peak","Basin","Gothics","Colden","Giant","Nippletop","Santanoni","Redfield","Wright Peak","Saddleback","Panther","TableTop","Rocky Peak","Macomb","Armstrong","Hough","Seward","Marshall","Allen","Big Slide","Esther","Upper Wolf Jaw","Lower Wolf Jaw","Street","Phelps","Donaldson","Seymour","Sawteeth","Cascade","South Dix","Porter","Colvin","Emmons","Dial","Grace Peak","Blake Peak","Cliff","Nye","Couchsachraga"];
 				title = "The Adirondack 46ers";
+			} else if (window.location.href.match("NewEngland")) {
+				numItems = 67;
+				itemNames = ["Washington","Adams","Jefferson","Monroe","Madison","Katahdin (Baxter)","Lafayette","Lincoln","South Twin","Carter Dome","Moosilauke","Eisenhower","North Twin","Katahdin (Hamlin)","Carrigain","Bond","Middle Carter","West Bond","Garfield","Liberty","South Carter","Wildcat, A peak","Hancock","Mount Mansfield","South Kinsman","Field","Osceola","Flume","South Hancock","Pierce","North Kinsman","Willey","Bondcliff","Zealand","Sugarloaf","Killington","Crocker Mountain","N. Tripyramid","Old Speck","Cabot","East Osceola","North Brother","Bigelow (West)","Mid. Tripyramid","Saddleback","Cannon","Bigelow (Avery)","Camel's Hump","Mount Ellen","Hale","Jackson","Tom","Mount Abraham","South Crocker","Wildcat, D Peak","Moriah","Passaconaway","Owl's Head","Galehead","Saddleback Horn","Whiteface","Mount Redington","Spaulding","Waumbek","Mount Abraham","Isolation","Tecumseh"];
+				title = 'The 67 New England 4000 Footers';
+			} else if (window.location.href.match("50States")) {
+				numItems = 50;
+				itemNames = ["Alaska\\nDenali\\n20,310'","California\\nMount Whitney\\n14,498'","Colorado\\nMount Elbert\\n14,433'","Washington\\nMount Rainier\\n14,411'","Wyoming\\nGannett Peak\\n13,804'","Hawaii\\nMauna Kea\\n13,796'","Utah\\nKings Peak\\n13,528'","New Mexico\\nWheeler Peak\\n13,161'","Nevada\\nBoundary Peak\\n13,140'","Montana\\nGranite Peak\\n12,799'","Idaho\\nBorah Peak\\n12,662'","Arizona\\nHumphreys Peak\\n12,633'","Oregon\\nMount Hood\\n11,239'","Texas\\nGuadalupe Peak\\n8749'","South Dakota\\nBlack Elk Peak\\n7231'","North Carolina\\nMount Mitchell\\n6684'","Tennessee\\nClingmans Dome\\n6643'","New Hampshire\\nMount Washington\\n6288'","Virginia\\nMount Rogers\\n5729'","Nebraska\\nPanorama Point\\n5426'","New York\\nMount Marcy\\n5344'","Maine\\nKatahdin\\n5268'","Oklahoma\\nBlack Mesa\\n4973'","West Virginia\\nSpruce Knob\\n4861'","Georgia\\nBrasstown Bald\\n4784'","Vermont\\nMount Mansfield\\n4393'","Kentucky\\nBlack Mountain\\n4139'","Kansas\\nMount Sunflower\\n4039'","South Carolina\\nSassafras Mountain\\n3554'","North Dakota\\nWhite Butte\\n3506'","Massachusetts\\nMount Greylock\\n3487'","Maryland\\nBackbone Mountain\\n3360'","Pennsylvania\\nMount Davis\\n3213'","Arkansas\\nMagazine Mountain\\n2753'","Alabama\\nCheaha Mountain\\n2405'","Connecticut\\nMount Frissell\\n2380'","Minnesota\\nEagle Mountain\\n2301'","Michigan\\nMount Arvon\\n1979'","Wisconsin\\nTimms Hill\\n1951'","New Jersey\\nHigh Point\\n1803'","Missouri\\nTaum Sauk Mountain\\n1772'","Iowa\\nHawkeye Point\\n1670'","Ohio\\nCampbell Hill\\n1549'","Indiana\\nHoosier Hill\\n1257'","Illinois\\nCharles Mound\\n1235'","Rhode Island\\nJerimoth Hill\\n812'","Mississippi\\nWoodall Mountain\\n806'","Louisiana\\nDriskill Mountain\\n535'","Delaware\\nEbright Azimuth\\n450'","Florida\\nBritton Hill\\n345'"];
+				title = 'The 50 State High Points';
+				yPadding = 180;
+				horizPadding = 50;
+				xPadding = 120;
+			} else if (window.location.href.match("Colorado")) {
+				numItems = 56;
+				itemNames = ["Mt. Elbert","Mt. Massive","Mt. Harvard","Blanca Peak","La Plata Peak","Uncompahgre Peak","Crestone Peak","Mt. Lincoln","Grays Peak","Mt. Antero","Torreys Peak","Castle Peak","Quandary Peak","Mt. Evans","Longs Peak","Mt. Wilson","Mt. Cameron","Mt. Shavano","Mt. Princeton","Mt. Belford","Crestone Needle","Mt. Yale","Mt. Bross","Kit Carson Peak","El Diente Peak","Maroon Peak","Tabeguache Peak","Mt. Oxford","Mt. Sneffels","Mt. Democrat","Capitol Peak","Pikes Peak","Snowmass Mountain","Windom Peak","Mt. Eolus","Challenger Point","Mt. Columbia","Missouri Mountain","Humboldt Peak","Mt. Bierstadt","Conundrum Peak","Sunlight Peak","Handies Peak","Culebra Peak","Mt. Lindsey","Ellingwood Point","North Eolus","Little Bear Peak","Mt. Sherman","Redcloud Peak","Pyramid Peak","Wilson Peak","Wetterhorn Peak","San Luis Peak","North Maroon","Mt. of the Holy Cross","Huron Peak","Sunshine Peak","San Juan Mountain"];
+				title = 'The Colorado 14ers';
+			} else if (window.location.href.match("Northeast")) {
+				numItems = 115;
+				itemNames = ["New Hampshire\\nMount Washington","New Hampshire\\nMount Adams","New Hampshire\\nMount Jefferson","New Hampshire\\nMount Monroe","New Hampshire\\nMount Madison","New York\\nMount Marcy","Maine\\nKatahdin","New Hampshire\\nMount Lafayette","New York\\nAlgonquin Peak","New Hampshire\\nMount Lincoln","New York\\nMount Haystack","New York\\nMount Skylight","New Hampshire\\nSouth Twin","New York\\nWhiteface Mountain","New York\\nIroquois Peak","New Hampshire\\nCarter Dome","New York\\nBasin Mountain","New York\\nGray Peak","New York\\nDix Mountain","New Hampshire\\nMount Moosilauke","New Hampshire\\nNorth Twin","New Hampshire\\nMount Eisenhower","Maine\\nHamlin Peak","New York\\nGothics","New York\\nMount Colden","New Hampshire\\nMount Bond","New Hampshire\\nMount Carrigain","New York\\nGiant Mountain","New York\\nSantanoni Peak","New York\\nMount Redfield","New Hampshire\\nMiddle Carter Mountain","New York\\nNippletop","New York\\nWright Peak","New York\\nSaddleback Mountain","New Hampshire\\nWest Bond","New Hampshire\\nMount Garfield","New Hampshire\\nMount Liberty","New York\\nPanther Peak","New York\\nArmstrong Mountain","New Hampshire\\nWildcat Mountain","New Hampshire\\nS. Carter Mountain","New York\\nTable Top Mountain","New York\\nHough Peak","New Hampshire\\nMount Hancock","Vermont\\nMount Mansfield","New York\\nRocky Peak Ridge","New York\\nMacomb Mountain","New York\\nMount Marshall","New Hampshire\\nSouth Kinsman","New York\\nAllen Mountain","New York\\nSeward Mountain","New Hampshire\\nMount Flume","New Hampshire\\nMount Osceola","New Hampshire\\nMount Field","New Hampshire\\nSouth Hancock","New Hampshire\\nMount Pierce","New Hampshire\\nNorth Kinsman","New Hampshire\\nBondcliffs","New Hampshire\\nMount Willey","Maine\\nSugarloaf Mountain","New Hampshire\\nZealand Mountain","New York\\nEsther Mountain","Vermont\\nKillington","Maine\\nCrocker Mountain","New York\\nUpper Wolfjaw","New York\\nBig Slide Mountain","New York\\nSlide Mountain","New York\\nLower Wolfjaw","Maine\\nOld Speck","New Hampshire\\nMount Cabot","New Hampshire\\nNorth Tripyramid","New York\\nPhelps Mountain","New Hampshire\\nEast Osceola","Maine\\nNorth Brother","Maine\\nBigelow Mountain","New York\\nStreet Mountain","New York\\nSawteeth","Maine\\nSaddleback Mountain","New Hampshire\\nMid. Tripyramid","New York\\nDonaldson Mountain","New York\\nCascade Mountain","New York\\nSeymour Mountain","Maine\\nAvery Peak","Vermont\\nMount Ellen","Vermont\\nCamels Hump","New Hampshire\\nCannon Mountain","New York\\nPorter Mountain","New York\\nSouth Dix","New Hampshire\\nWildcat D","New Hampshire\\nMount Hale","New Hampshire\\nMount Jackson","New Hampshire\\nMount Tom","New Hampshire\\nMount Moriah","New Hampshire\\nPassaconaway","Maine\\nSaddleback (the Horn)","New York\\nHunter Mountain","Maine\\nMount Abraham","Maine\\nSouth Crocker Mountain","New York\\nMount Emmons","New York\\nMount Colvin","New York\\nGrace Mountain","New Hampshire\\nOwls Head","New Hampshire\\nGalehead Mountain","New Hampshire\\nMount Waumbek","Vermont\\nMount Abraham","New Hampshire\\nMount Tecumseh","New Hampshire\\nMount Isolation","New York\\nDial Mountain","Maine\\nSpaulding Mountain","New Hampshire\\nMount Whiteface","Maine\\nMount Redington","New York\\nBlake Peak","New York\\nCliff Mountain","New York\\nNye Mountain","New York\\nCouchsachraga Peak"];
+				title = 'The Northeast 115 4000 Footers';
+				labelFontSize = 24;
+				xPadding = 90;
 			}
 			setTitle(title);
 			setNumItems(numItems);
@@ -241,8 +263,14 @@
 			ctx.textBaseline = 'middle';
 			ctx.strokeStyle = "#000000";
 			ctx.fillStyle = "#000000";
-			ctx.font = "36px Georgia";
-			ctx.fillText(text, x, y);
+			ctx.font = String(labelFontSize) + "px Georgia";
+
+			var multiLineText = text.split("\\n");
+			var drawIndex = (multiLineText.length-1)/2;
+
+			for (var i=-drawIndex; i<= drawIndex; i++ ) {
+				ctx.fillText(multiLineText[i+drawIndex], x, y + labelFontSize * i);
+			}
 		}
 
 		function getCanvas() {
@@ -436,7 +464,11 @@
 			<h1>Grid Posters</h1>
 			<div>
 				<a href="?Adirondacks">Adirondacks</a>
-				<a href="?NewHampshire">New Hampshire</a>
+				<a href="?NewHampshire">New Hampshire 48</a>
+				<a href="?NewEngland">New England 67</a>
+				<a href="?Northeast">Northeast 115</a>
+				<a href="?Colorado">Colorado 14ers</a>
+				<a href="?50States">50 State High Points</a>
 			</div>
 			<Br />
 			<div id="posterContainer">
