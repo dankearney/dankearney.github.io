@@ -269,15 +269,20 @@
 			ctx.strokeStyle = "#000000";
 			ctx.fillStyle = "#000000";
 			ctx.font = "100px Georgia";
+			ctx.fillStyle = getFontColor();
+			ctx.shadowColor=getShadowColor();
+			ctx.shadowBlur=10;
 			ctx.fillText(text, x, y);
+			ctx.shadowBlur = 0;
 		}
+
 
 		function drawLabelText(canvas, x, y, text) {
 			var ctx = getCanvasContext(canvas);
 			ctx.textAlign = "center";
 			ctx.textBaseline = 'middle';
-			ctx.fillStyle = "black";
-			ctx.shadowColor="white";
+			ctx.fillStyle = getFontColor();
+			ctx.shadowColor=getShadowColor();
 			ctx.shadowBlur=10;
 			ctx.font = String(labelFontSize) + "px Georgia";
 
@@ -418,6 +423,18 @@
 			row.append(document.createElement("br"));
 		}
 
+		function getFontColor() {
+			return document.getElementById("fontcolor").value;
+		}
+
+		function getShadowColor() {
+			var fontColor = getFontColor();
+			if (fontColor == 'white') {
+				return 'black';
+			}
+			return 'white';
+		}
+
 		function drawRectangles(canvas) {
 
 			promises = []
@@ -508,6 +525,12 @@
 				</form>
 				<strong>Number of Items</strong>
 				<input type='number' min=1 max=1000 id='numItems' value='5'></input>
+				<br />
+				<strong>Font color</strong>
+				<select id="fontcolor" name="fontcolor">
+					<option value="black">Black</option>
+					<option value="white">White</option>
+				</select>
 				<br />
 				<div id="inputContainer"></div>
 				<br /><br />
