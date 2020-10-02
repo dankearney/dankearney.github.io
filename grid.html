@@ -242,7 +242,16 @@
 		}
 
 		function drawTitle(canvas) {
-			drawText(canvas, canvasWidthPixels/2, titlePadding/2, document.getElementById("title").value);
+			var ctx = getCanvasContext(canvas);
+			ctx.textAlign = "center";
+			ctx.textBaseline = 'middle';
+			ctx.fillStyle = "black";
+			ctx.font = "100px Georgia";
+			var multiLineText = document.getElementById("title").value.split("\\n");
+			var drawIndex = (multiLineText.length-1)/2;
+			for (var i=-drawIndex; i<= drawIndex; i++ ) {
+				drawText(canvas, canvasWidthPixels/2, titlePadding/2 + 100 * i, multiLineText[i+drawIndex]);
+			}
 		}
 
 		function setTitle() {
@@ -267,8 +276,9 @@
 			var ctx = getCanvasContext(canvas);
 			ctx.textAlign = "center";
 			ctx.textBaseline = 'middle';
-			ctx.strokeStyle = "#000000";
-			ctx.fillStyle = "#000000";
+			ctx.fillStyle = "black";
+			ctx.shadowColor="white";
+			ctx.shadowBlur=10;
 			ctx.font = String(labelFontSize) + "px Georgia";
 
 			var multiLineText = text.split("\\n");
@@ -277,8 +287,9 @@
 			for (var i=-drawIndex; i<= drawIndex; i++ ) {
 				ctx.fillText(multiLineText[i+drawIndex], x, y + labelFontSize * i);
 			}
+			ctx.shadowBlur = 0;
 		}
-
+		
 		function getCanvas() {
 			return document.getElementById("poster");
 		}
