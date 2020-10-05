@@ -62,7 +62,7 @@
 		var numItems = 48;
 		var labelFontSize = 36;
 
-		var backgroundImages =  ["mountains1_l.jpg", "mountains2.jpg", "Background.png"]
+		var backgroundImages =  ["bg1.png", "bg2.png", "bg3.png"]
 		var itemNames = ["Mount Washington"];
 		var title = 'Title';
 
@@ -90,6 +90,11 @@
 		}
 
 		function drawPoster() {
+
+			// Read UI element values
+			xPadding = parseInt(getElementValue('xPadding'));
+			yPadding = parseInt(getElementValue('yPadding'));
+			titlePadding = parseInt(getElementValue('titlePadding'));
 
 			// Add inputs
 			addInputs(getNames());
@@ -155,6 +160,9 @@
 			}
 			setTitle(title);
 			setNumItems(numItems);
+			setElementValue('xPadding', xPadding);
+			setElementValue('yPadding', yPadding);
+			setElementValue('titlePadding', titlePadding);			
 		}
 
 		function render(canvas) {
@@ -424,7 +432,8 @@
 		}
 
 		function getFontColor() {
-			return document.getElementById("fontcolor").value;
+			var e = document.getElementById("fontcolor");
+			return e.options[e.selectedIndex].value;
 		}
 
 		function getShadowColor() {
@@ -491,6 +500,14 @@
             return promises;
 		}
 
+		function setElementValue(id, value) {
+			document.getElementById(id).value = value;
+		}
+
+		function getElementValue(id) {
+			return document.getElementById(id).value;
+		}
+
 	</script>
 	</head>
 	<body>
@@ -532,6 +549,17 @@
 					<option value="white">White</option>
 				</select>
 				<br />
+				<strong>Horizontal padding between items</strong>
+				<input type='number' min=0 max=1000 id='xPadding'></input>
+				<br />
+				<strong>Vertical padding between items</strong>
+				<input type='number' min=0 max=1000 id='yPadding'></input>
+				<br />
+				<strong>Title padding</strong>
+				<input type='number' min=0 max=1000 id='titlePadding'></input>
+				<br />
+				<div id="inputContainer"></div>
+				<br /><br />
 				<div id="inputContainer"></div>
 				<br /><br />
 			</div>
