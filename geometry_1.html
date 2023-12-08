@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <script type='text/javascript'>
+      function drawLinePolar(ctx, startX, startY, angleDeg, length) {
+  var angle = angleDeg * 0.0174533;
+  ctx.moveTo(startX, startY);
+  var newX = startX + length * Math.cos(angle);
+  var newY = startY + length * Math.sin(angle);
+  ctx.lineTo(newX, newY);
+  ctx.stroke();
+  return [newX, newY];
+} 
+
+function drawLine(ctx, startX, startY, newX, newY) {
+  ctx.moveTo(startX, startY);
+  ctx.lineTo(newX, newY);
+  ctx.stroke();
+  return [newX, newY];
+} 
+
+function cosDeg(deg) {
+	return Math.cos(deg * 0.0174533)
+}
+
+function drawHalfCircle(ctx, midX, midY, radius) {
+  ctx.beginPath();
+  ctx.arc(midX, midY, radius, 0, Math.PI);
+  ctx.stroke();
+}
+
+function drawQuarterCircle(ctx, midX, midY, radius) {
+  ctx.beginPath();
+  ctx.arc(midX, midY, radius, 3*Math.PI/2, 0);
+  ctx.stroke();
+}
+
+function drawRect(ctx, x, y, width, height) {
+  ctx.beginPath();
+  ctx.rect(x, y, width, height);
+  ctx.stroke();
+}
+
+function drawShape(angle) {
+
+	var angle = document.getElementById("angleSlider").value;
+
+	var c = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+
+  // Store the current transformation matrix
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.beginPath();
+
+
+  
+  var bottomLeftX = 100;
+  var bottomLeftY = 50;
+  var hyp = 50;
+
+
+  // Draw initial line
+  var endCoords = drawLinePolar(ctx, bottomLeftX, bottomLeftY, angle, hyp)
+
+  // Draw the circle radius
+  var tangentX = endCoords[0];
+  var tangentY = endCoords[1];
+  var radius = hyp * cosDeg(90-angle) / cosDeg(angle)
+  var circleMid = drawLinePolar(ctx, tangentX, tangentY, angle-90, radius)
+
+  // draw the first circle
+  drawHalfCircle(ctx, circleMid[0], circleMid[1], radius)
+
+  // draw the quarter circle
+  var leftCircleRadius = circleMid[0] - radius - bottomLeftX;
+  drawQuarterCircle(ctx, bottomLeftX, bottomLeftY, leftCircleRadius)
+
+  // draw the rectangle
+  var width = leftCircleRadius + 2*radius;
+  var height = leftCircleRadius;
+  drawRect(ctx, bottomLeftX, bottomLeftY - leftCircleRadius, width, height)
+  
+  
+  
+  // Draw text
+  ctx.font = "14px times";
+  ctx.fillText("Angle: " + parseFloat(angle).toFixed(1), 0, bottomLeftY);
+  ctx.fillText("Hypotenuse: " + hyp, 0, bottomLeftY + 20*1);
+  ctx.fillText("Width: " + width.toFixed(1), 0, bottomLeftY + 20*2);
+  ctx.fillText("Height: " + height.toFixed(1), 0, bottomLeftY + 20*3);
+  ctx.fillText("Area: " + (height*width).toFixed(1), 0, bottomLeftY + 20*4);
+}
+
+drawShape()
+
+    </script>
+  </head>
+  <body>  
+    <div class="slidecontainer">
+      <label>Angle: </label>
+      0°
+      <input id="angleSlider" onChange="drawShape()" type="range" min="1" max="89" value="45" class="slider" id="myRange">
+      90°
+    </div>
+    <canvas id="canvas" width="1000px" height="1000px"> 
+    </canvas>
+  </body>
+</html>
