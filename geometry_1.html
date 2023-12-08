@@ -1,6 +1,18 @@
 <html>
   <head>
-    <script type='text/javascript'>
+   
+  </head>
+  <body>  
+    <div class="slidecontainer">
+      <label>Angle: </label>
+      0°
+      <input id="angleSlider" onChange="drawShape()" type="range" min="1" max="89" value="45" class="slider" id="myRange">
+      90°
+    </div>
+    <canvas id="canvas" width="1000px" height="1000px"> 
+    </canvas>
+  </body>
+	 <script type='text/javascript'>
       function drawLinePolar(ctx, startX, startY, angleDeg, length) {
   var angle = angleDeg * 0.0174533;
   ctx.moveTo(startX, startY);
@@ -93,15 +105,4 @@ function drawShape(angle) {
 drawShape()
 
     </script>
-  </head>
-  <body>  
-    <div class="slidecontainer">
-      <label>Angle: </label>
-      0°
-      <input id="angleSlider" onChange="drawShape()" type="range" min="1" max="89" value="45" class="slider" id="myRange">
-      90°
-    </div>
-    <canvas id="canvas" width="1000px" height="1000px"> 
-    </canvas>
-  </body>
 </html>
